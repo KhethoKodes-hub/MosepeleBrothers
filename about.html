@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Mosepele Brothers Trading & Projects</title>
+    <style>
+        :root {
+            --primary: #002366;
+            --secondary: #CC5500;
+            --accent: #FFD700;
+            --light: #F5F5F5;
+            --dark: #333333;
+            --text: #444444;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .about-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.7)), url('images/about-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .about-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .highlight {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .mission-vision {
+            background: var(--light);
+            padding: 80px 0;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .mission, .vision {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .mission h3, .vision h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mission h3 i, .vision h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .team-section {
+            padding: 80px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .team-img img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-info h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .main-footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            margin: 20px 0;
+            color: #bbb;
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid,
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .about-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Mosepele Brothers Logo">
+                <span>MOSEPELE BROTHERS</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <!--<li><a href="gallery.html">Gallery</a></li>-->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container about-hero-content">
+            <h1>Our Story</h1>
+            <p>Building communities through excellence since 2016</p>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/team-working.jpg" alt="Mosepele Brothers team at work">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">WHO WE ARE</h2>
+                    <p class="highlight">Supporting our community by providing employment opportunities and essential services to improve daily living.</p>
+                    <p>Mosepele Brothers Trading & Projects is a 100% black-owned business established in early 2016. With extensive experience across various industrial sectors, our managing director brings significant value to every business operation.</p>
+                    <p>We are proud to be BEE-accredited by a recognized service provider, demonstrating our commitment to empowerment and transformation in South Africa.</p>
+                    <p>Our team consists of skilled professionals who are dedicated to delivering quality services while creating opportunities for disadvantaged individuals in our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title">OUR MISSION & VISION</h2>
+            
+            <div class="mv-grid">
+                <div class="mission">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>To deliver quality services, empower disadvantaged individuals, support community development, and establish a sustainable and professionally managed business.</p>
+                    <p>We believe in creating value not just for our clients, but for our entire community through job creation and skills development.</p>
+                </div>
+                
+                <div class="vision">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To lead as a trusted black-owned company, delivering excellent services and products, inspiring others, and building a respected reputation.</p>
+                    <p>We aim to be recognized as a benchmark for quality and empowerment in the industrial services sector.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">OUR TEAM</h2>
+            <p class="section-subtitle">Meet the dedicated professionals behind Mosepele Brothers</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="images/team1.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h4>Victor Mosepele</h4>
+                        <p>Managing Director</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="images/team2.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h4>John Mosepele</h4>
+                        <p>Operations Manager</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="images/team3.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h4>Sarah Mosepele</h4>
+                        <p>Finance Manager</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="images/team4.jpg" alt="Team Member">
+                    </div>
+                    <div class="team-info">
+                        <h4>David Mosepele</h4>
+                        <p>Technical Supervisor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo-white.png" alt="Mosepele Brothers Logo" class="footer-logo">
+                    <p>Mosepele Brothers Trading & Projects is a 100% black-owned business established in 2016, providing quality industrial services while supporting community development.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> victor.mosepele@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 076 446 3897</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 7 Spreeu Street, Newtown, Postmasburg, 8420</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mosepele Brothers Trading & Projects. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector('.main-nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.about-grid, .mv-grid, .team-member');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        document.querySelectorAll('.about-grid, .mv-grid, .team-member').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

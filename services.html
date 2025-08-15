@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Mosepele Brothers Trading & Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #002366;
+            --secondary: #CC5500;
+            --accent: #FFD700;
+            --light: #F5F5F5;
+            --dark: #333333;
+            --text: #444444;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        /* Services Hero */
+        .services-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.7)), url('images/services-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .services-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            margin: 0 10px;
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(204, 85, 0, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-info {
+            padding: 25px;
+        }
+
+        .service-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .service-info p {
+            margin-bottom: 20px;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 20%;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .step h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Clients Section */
+        .clients-section {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .client-logo {
+            max-width: 180px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        .client-logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            margin: 20px 0;
+            color: #bbb;
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .process-steps {
+                flex-wrap: wrap;
+            }
+            
+            .step {
+                width: 45%;
+                margin-bottom: 40px;
+            }
+            
+            .process-steps:before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tab-btn {
+                margin: 5px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .step {
+                width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Mosepele Brothers Logo">
+                <span>MOSEPELE BROTHERS</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <!--<li><a href="gallery.html">Gallery</a></li>-->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <div class="container services-hero-content">
+            <h1>Our Services</h1>
+            <p>Quality industrial solutions with a community focus</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">WHAT WE OFFER</h2>
+            <p class="section-subtitle">Comprehensive industrial services tailored to your needs</p>
+            
+            <div class="services-tabs">
+                <button class="tab-btn active" data-tab="all">All Services</button>
+                <button class="tab-btn" data-tab="repairs">Repairs</button>
+                <button class="tab-btn" data-tab="fabrication">Fabrication</button>
+                <button class="tab-btn" data-tab="maintenance">Maintenance</button>
+            </div>
+            
+            <div class="tab-content active" id="all">
+                <div class="services-grid">
+                    <div class="service-card" data-category="repairs">
+                        <div class="service-img">
+                            <img src="images/services/bucket-repair.jpg" alt="Bucket Repair">
+                        </div>
+                        <div class="service-info">
+                            <h3>Bucket Repair</h3>
+                            <p>Professional repair services for industrial buckets and containers to extend their lifespan and maintain efficiency.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="fabrication">
+                        <div class="service-img">
+                            <img src="images/services/fabrication.jpg" alt="Fabrication">
+                        </div>
+                        <div class="service-info">
+                            <h3>Fabrication & Maintenance</h3>
+                            <p>Custom metal fabrication and ongoing maintenance solutions tailored to your specific requirements.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="maintenance">
+                        <div class="service-img">
+                            <img src="images/services/conveyor-scrapers.jpg" alt="Conveyor Scrapers">
+                        </div>
+                        <div class="service-info">
+                            <h3>Conveyor Belt Scrapers</h3>
+                            <p>Supply and installation of high-quality conveyor belt scrapers to improve efficiency and reduce wear.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="repairs">
+                        <div class="service-img">
+                            <img src="images/services/splicing.jpg" alt="Splicing">
+                        </div>
+                        <div class="service-info">
+                            <h3>Splicing</h3>
+                            <p>Professional belt splicing services using industry-leading techniques for optimal performance.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="maintenance">
+                        <div class="service-img">
+                            <img src="images/services/belt-cleaning.jpg" alt="Belt Cleaning">
+                        </div>
+                        <div class="service-info">
+                            <h3>Belt Cleaning</h3>
+                            <p>Comprehensive belt cleaning and maintenance programs to ensure smooth operation.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="fabrication">
+                        <div class="service-img">
+                            <img src="images/services/steel-cord.jpg" alt="Steel Cord">
+                        </div>
+                        <div class="service-info">
+                            <h3>Steel Cord</h3>
+                            <p>Specialized steel cord services for heavy-duty applications in demanding environments.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="repairs">
+                        <div class="service-img">
+                            <img src="images/services/pulley-spice.jpg" alt="Pulley Spice">
+                        </div>
+                        <div class="service-info">
+                            <h3>Pulley Spice</h3>
+                            <p>Expert pulley splicing and maintenance services to keep your operations running smoothly.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="maintenance">
+                        <div class="service-img">
+                            <img src="images/services/electrical.jpg" alt="Electrical Maintenance">
+                        </div>
+                        <div class="service-info">
+                            <h3>Electrical Maintenance</h3>
+                            <p>Professional electrical systems maintenance and repair by certified technicians.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card" data-category="maintenance">
+                        <div class="service-img">
+                            <img src="images/services/plumbing.jpg" alt="Plumbing Work">
+                        </div>
+                        <div class="service-info">
+                            <h3>Plumbing Work</h3>
+                            <p>Industrial and commercial plumbing services for facilities of all sizes.</p>
+                            <a href="contact.html" class="btn btn-primary">Enquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">OUR PROCESS</h2>
+            <p class="section-subtitle">How we deliver exceptional service every time</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4>Consultation</h4>
+                    <p>We listen to understand your specific needs and challenges</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>Assessment</h4>
+                    <p>Thorough evaluation of your equipment and requirements</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4>Solution</h4>
+                    <p>Customized service plan tailored to your operation</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>Quality Check</h4>
+                    <p>Rigorous inspection to ensure highest standards</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Follow-up</h4>
+                    <p>Ongoing support and maintenance as needed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients-section">
+        <div class="container">
+            <h2 class="section-title">TRUSTED BY INDUSTRY LEADERS</h2>
+            <p class="section-subtitle">We're proud to serve these organizations</p>
+            
+            <div class="client-logos">
+                <div class="client-logo">
+                    <img src="images/clients/anglo-american.png" alt="Anglo American">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/kolomela.png" alt="Kolomela Mine">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/south32.png" alt="South32">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/kumba.png" alt="Kumba Iron Ore">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo-white.png" alt="Mosepele Brothers Logo" class="footer-logo">
+                    <p>Mosepele Brothers Trading & Projects is a 100% black-owned business established in 2016, providing quality industrial services while supporting community development.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <!--<li><a href="gallery.html">Gallery</a></li>-->
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> victor.mosepele@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 076 446 3897</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 7 Spreeu Street, Newtown, Postmasburg, 8420</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mosepele Brothers Trading & Projects. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation on Scroll
+        const navbar = document.querySelector('.main-nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Services Tab Functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = this.getAttribute('data-tab');
+                if (tabId === 'all') {
+                    document.getElementById('all').classList.add('active');
+                } else {
+                    // Filter services based on category
+                    const services = document.querySelectorAll('.service-card');
+                    services.forEach(service => {
+                        if (service.getAttribute('data-category') === tabId || tabId === 'all') {
+                            service.style.display = 'block';
+                        } else {
+                            service.style.display = 'none';
+                        }
+                    });
+                    document.getElementById('all').classList.add('active');
+                }
+            });
+        });
+
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .step');
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.service-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

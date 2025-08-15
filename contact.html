@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Mosepele Brothers Trading & Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #002366;
+            --secondary: #CC5500;
+            --accent: #FFD700;
+            --light: #F5F5F5;
+            --dark: #333333;
+            --text: #444444;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        /* Contact Hero */
+        .contact-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.7)), url('images/contact-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .contact-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            padding-right: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .info-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            text-align: center;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Certifications Section */
+        .certifications-section {
+            background: var(--light);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .certs-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .cert-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 300px;
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .cert-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            margin: 20px 0;
+            color: #bbb;
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Mosepele Brothers Logo">
+                <span>MOSEPELE BROTHERS</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <!--<li><a href="gallery.html">Gallery</a></li>-->
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container contact-hero-content">
+            <h1>Get In Touch</h1>
+            <p>We're ready to discuss your project needs</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">CONTACT US</h2>
+            <p class="section-subtitle">Reach out for inquiries, quotes, or more information</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email Us</h3>
+                            <p>victor.mosepele@gmail.com</p>
+                            <p>We typically respond within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Call Us</h3>
+                            <p>076 446 3897</p>
+                            <p>Monday - Friday: 8am - 5pm</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Visit Us</h3>
+                            <p>7 Spreeu Street, Newtown</p>
+                            <p>Postmasburg, Northern Cape, 8420</p>
+                            <p>By appointment only</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Our Credentials</h3>
+                            <p>BEE Level 1 Accredited</p>
+                            <p>Company Registration: 2016/046458/07</p>
+                            <p>VAT Number: 4420292163</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="bucket-repair">Bucket Repair</option>
+                                <option value="fabrication">Fabrication & Maintenance</option>
+                                <option value="conveyor-scrapers">Conveyor Belt Scrapers</option>
+                                <option value="splicing">Splicing</option>
+                                <option value="belt-cleaning">Belt Cleaning</option>
+                                <option value="steel-cord">Steel Cord</option>
+                                <option value="pulley-spice">Pulley Spice</option>
+                                <option value="electrical">Electrical Maintenance</option>
+                                <option value="plumbing">Plumbing Work</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1ddummy!2d24.123456!3d-28.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDA3JzI0LjQiUyAyNMKwMDcnMjQuNCJF!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications-section">
+        <div class="container">
+            <h2 class="section-title">OUR CREDENTIALS</h2>
+            <p class="section-subtitle">Trusted and accredited for quality service</p>
+            
+            <div class="certs-grid">
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>BEE Level 1</h3>
+                    <p>Highest level of Broad-Based Black Economic Empowerment accreditation</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Company Registered</h3>
+                    <p>2016/046458/07</p>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>VAT Registered</h3>
+                    <p>VAT Number: 4420292163</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo-white.png" alt="Mosepele Brothers Logo" class="footer-logo">
+                    <p>Mosepele Brothers Trading & Projects is a 100% black-owned business established in 2016, providing quality industrial services while supporting community development.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> victor.mosepele@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> 076 446 3897</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 7 Spreeu Street, Newtown, Postmasburg, 8420</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mosepele Brothers Trading & Projects. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation on Scroll
+        const navbar = document.querySelector('.main-nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                
+                // Here you would typically send the data to a server
+                console.log('Form submitted:', data);
+                
+                // Show success message
+                alert('Thank you for your message! We will contact you soon.');
+                this.reset();
+            });
+        }
+
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.info-item, .cert-item');
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.info-item, .cert-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
