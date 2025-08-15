@@ -739,3 +739,37 @@ blockquote {
         grid-template-columns: 1fr;
     }
 }
+
+.main-nav .container {
+    display: flex;
+    justify-content: flex-end; /* pushes content to the right */
+    align-items: center;
+}
+
+/* Optional: space between logo and menu */
+.main-nav .logo {
+    margin-right: auto; /* pushes logo left while menu stays right */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px; /* spacing between links */
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px; /* Adjust for nav height */
+        right: 0;
+        width: 200px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+}

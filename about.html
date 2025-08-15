@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="assets/MSPBLogo.png" type="image/x-icon">
+
     <title>About Us | Mosepele Brothers Trading & Projects</title>
     <style>
         :root {
@@ -358,6 +360,156 @@
                 padding: 60px 0;
             }
         }
+
+        /* Base Styles */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+/* Mobile Menu Hidden by Default */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* adjust to your nav height */
+        right: 0;
+        background: white;
+        width: 200px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    /* Show menu when active */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    /* Hamburger visible on mobile */
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .nav-toggle span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: #333;
+        border-radius: 2px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* adjust for your nav height */
+        right: 0;
+        background: #fff;
+        width: 200px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .nav-toggle span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: #333;
+        border-radius: 2px;
+    }
+}
+
+.main-nav .container {
+    display: flex;
+    justify-content: flex-end; /* pushes content to the right */
+    align-items: center;
+}
+
+/* Optional: space between logo and menu */
+.main-nav .logo {
+    margin-right: auto; /* pushes logo left while menu stays right */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px; /* spacing between links */
+}
+
+/* Desktop default */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+/* Hide hamburger on desktop */
+.nav-toggle {
+    display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    /* Hide menu by default */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* adjust based on nav height */
+        right: 0;
+        background: #fff;
+        width: 220px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        z-index: 999;
+    }
+
+    /* Show when active */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    /* Show hamburger button */
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .nav-toggle span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: #333;
+        border-radius: 2px;
+    }
+}
+
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -366,7 +518,7 @@
     <nav class="main-nav">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="Mosepele Brothers Logo">
+                <img src="assets/MSPBLogo.png" alt="Mosepele Brothers Logo">
                 <span>MOSEPELE BROTHERS</span>
             </a>
             <ul class="nav-menu">
@@ -476,7 +628,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <img src="images/logo-white.png" alt="Mosepele Brothers Logo" class="footer-logo">
+                    <img src="assets/MSPBLogo.png" alt="Mosepele Brothers Logo" class="footer-logo">
                     <p>Mosepele Brothers Trading & Projects is a 100% black-owned business established in 2016, providing quality industrial services while supporting community development.</p>
                 </div>
                 
@@ -554,6 +706,20 @@
 
         window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
+
+        
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.querySelector(".nav-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+    }
+});
+
     </script>
 </body>
 </html>
